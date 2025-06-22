@@ -1,28 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coming Soon</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #1C39BB; 
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-        }
-        h1 {
-            font-size: 3rem;
-            color: #B9D9EB; 
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>⚡️ Coming Soon...</h1>
+
+    <div class="storm-container"></div>
+    
+    <div class="content-container">
+        <h1>⚡️ Coming Soon...</h1>
+    </div>
+
+    <audio id="thunder-sound" src="thunder.mp3" preload="auto"></audio>
+
+    <script>
+        window.addEventListener('load', () => {
+            const stormContainer = document.querySelector('.storm-container');
+            const contentContainer = document.querySelector('.content-container');
+            const thunderSound = document.getElementById('thunder-sound');
+            
+            // CHANGED: The total animation is now only 1 second long
+            const totalStormDuration = 1000;
+
+            function createLightning() {
+                const bolt = document.createElement('div');
+                const skyFlash = document.createElement('div');
+                
+                skyFlash.className = 'sky-flash';
+                bolt.className = 'lightning';
+
+                bolt.style.left = Math.random() * 100 + 'vw';
+                bolt.style.top = '-10%';
+                bolt.style.width = Math.random() * 6 + 2 + 'px';
+                bolt.style.height = Math.random() * 70 + 40 + '%';
+                bolt.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
+                
+                stormContainer.appendChild(skyFlash);
+                stormContainer.appendChild(bolt);
+                
+                // CHANGED: Clean up elements much faster
+                setTimeout(() => {
+                    skyFlash.remove();
+                    bolt.remove();
+                }, 500);
+            }
+
+            function startStorm() {
+                thunderSound.play().catch(e => console.error("Audio could not play:", e));
+
+                // CHANGED: An extremely compressed sequence of strikes
+                setTimeout(createLightning, 50);  // First
+                setTimeout(createLightning, 200); // Middle
+                setTimeout(createLightning, 400); // Final
+                
+                // This reveals the content after the total duration
+                setTimeout(() => {
+                    contentContainer.style.opacity = '1';
+                }, totalStormDuration);
+            }
+
+            startStorm();
+        });
+    </script>
 </body>
 </html>
