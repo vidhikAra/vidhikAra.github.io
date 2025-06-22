@@ -1,5 +1,44 @@
-/* style.css (1-Second Version) */
+/* ADD THESE STYLES FOR THE WARNING */
+.warning-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    color: #fff;
+    text-align: center;
+}
 
+.warning-box {
+    background: #111;
+    padding: 30px 40px;
+    border: 1px solid #555;
+    border-radius: 10px;
+    max-width: 500px;
+}
+
+.warning-box h2 {
+    color: #FFD700;
+    margin-top: 0;
+}
+
+.warning-box button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Your other styles for .storm-container, .lightning, etc. remain below */
 body {
     background-color: #000;
     font-family: Arial, sans-serif;
@@ -24,8 +63,6 @@ body {
                 0 0 60px 25px #00529B;
     background-color: #fff;
     border-radius: 5px;
-
-    /* CHANGED: The fadeOut is now extremely fast (0.3s) with a tiny delay */
     animation: flash 0.05s ease-in, fadeOut 0.3s ease-in forwards 0.05s;
 }
 
@@ -37,7 +74,6 @@ body {
     height: 100%;
     background: #fff;
     opacity: 0;
-    /* CHANGED: A much shorter flash animation */
     animation: flash 0.1s ease-out;
 }
 
@@ -62,7 +98,7 @@ body {
     width: 100vw;
     background-color: #1C39BB;
     opacity: 0;
-    transition: opacity 0.5s ease-in; /* Faster content fade-in */
+    transition: opacity 0.5s ease-in;
 }
 
 .content-container h1 {

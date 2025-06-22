@@ -8,6 +8,14 @@
 </head>
 <body>
 
+    <div id="warning-overlay" class="warning-overlay">
+        <div class="warning-box">
+            <h2>Warning: Flashing Lights</h2>
+            <p>This site contains rapidly flashing lights and animations that may trigger seizures in people with photosensitive epilepsy. Viewer discretion is advised.</p>
+            <button id="continue-button">Continue</button>
+        </div>
+    </div>
+
     <div class="storm-container"></div>
     
     <div class="content-container">
@@ -17,31 +25,26 @@
     <audio id="thunder-sound" src="thunder.mp3" preload="auto"></audio>
 
     <script>
-        window.addEventListener('load', () => {
+        document.addEventListener('DOMContentLoaded', () => {
+            const warningOverlay = document.getElementById('warning-overlay');
+            const continueButton = document.getElementById('continue-button');
             const stormContainer = document.querySelector('.storm-container');
             const contentContainer = document.querySelector('.content-container');
             const thunderSound = document.getElementById('thunder-sound');
-            
-            // CHANGED: The total animation is now only 1 second long
             const totalStormDuration = 1000;
 
             function createLightning() {
                 const bolt = document.createElement('div');
                 const skyFlash = document.createElement('div');
-                
                 skyFlash.className = 'sky-flash';
                 bolt.className = 'lightning';
-
                 bolt.style.left = Math.random() * 100 + 'vw';
                 bolt.style.top = '-10%';
                 bolt.style.width = Math.random() * 6 + 2 + 'px';
                 bolt.style.height = Math.random() * 70 + 40 + '%';
                 bolt.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
-                
                 stormContainer.appendChild(skyFlash);
                 stormContainer.appendChild(bolt);
-                
-                // CHANGED: Clean up elements much faster
                 setTimeout(() => {
                     skyFlash.remove();
                     bolt.remove();
@@ -49,20 +52,19 @@
             }
 
             function startStorm() {
-                thunderSound.play().catch(e => console.error("Audio could not play:", e));
-
-                // CHANGED: An extremely compressed sequence of strikes
-                setTimeout(createLightning, 50);  // First
-                setTimeout(createLightning, 200); // Middle
-                setTimeout(createLightning, 400); // Final
-                
-                // This reveals the content after the total duration
+                thunderSound.play().catch(e => {});
+                setTimeout(createLightning, 50);
+                setTimeout(createLightning, 200);
+                setTimeout(createLightning, 400);
                 setTimeout(() => {
                     contentContainer.style.opacity = '1';
                 }, totalStormDuration);
             }
 
-            startStorm();
+            continueButton.addEventListener('click', () => {
+                warningOverlay.style.display = 'none';
+                startStorm();
+            });
         });
     </script>
 </body>
