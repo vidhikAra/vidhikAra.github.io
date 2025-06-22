@@ -1,5 +1,7 @@
-/* ADD THESE STYLES FOR THE WARNING */
-.warning-overlay {
+/* style.css (Updated with new class names) */
+
+/* CHANGED: Renamed classes to avoid ad-blocker triggers */
+.safety-notice {
     position: fixed;
     top: 0;
     left: 0;
@@ -14,7 +16,7 @@
     text-align: center;
 }
 
-.warning-box {
+.notice-panel {
     background: #111;
     padding: 30px 40px;
     border: 1px solid #555;
@@ -22,12 +24,12 @@
     max-width: 500px;
 }
 
-.warning-box h2 {
+.notice-panel h2 {
     color: #FFD700;
     margin-top: 0;
 }
 
-.warning-box button {
+.notice-panel button {
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 1rem;
@@ -38,7 +40,7 @@
     border-radius: 5px;
 }
 
-/* Your other styles for .storm-container, .lightning, etc. remain below */
+/* --- The rest of your styles are unchanged --- */
 body {
     background-color: #000;
     font-family: Arial, sans-serif;

@@ -8,8 +8,8 @@
 </head>
 <body>
 
-    <div id="warning-overlay" class="warning-overlay">
-        <div class="warning-box">
+    <div id="warning-overlay" class="safety-notice">
+        <div class="notice-panel">
             <h2>Warning: Flashing Lights</h2>
             <p>This site contains rapidly flashing lights and animations that may trigger seizures in people with photosensitive epilepsy. Viewer discretion is advised.</p>
             <button id="continue-button">Continue</button>
@@ -26,6 +26,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // The JavaScript does not need to change, as it uses IDs (e.g., #warning-overlay)
+            // which are not typically blocked by extensions.
             const warningOverlay = document.getElementById('warning-overlay');
             const continueButton = document.getElementById('continue-button');
             const stormContainer = document.querySelector('.storm-container');
